@@ -1,0 +1,468 @@
+
+   
+                                       
+                                     
+            
+                                
+                    <!-- ###################################################################################################################################### -->
+            
+                            </form>
+                            </div>
+                            <div  class="col-md-6 offset-md-3">
+
+    <div *ngIf="showDetails" class="row">
+        <div class="col-md-6 offset-md-3">
+        <br>
+        <br>
+        <h4>Services</h4>
+        <mat-divider></mat-divider>
+        
+        <table>
+        <tr>
+            <td><mat-icon>contact_phone</mat-icon> &nbsp; Enquiry</td>
+        </tr>
+        <tr>
+            <td><mat-icon>input</mat-icon> &nbsp; Login</td>
+        </tr>
+        <tr>
+            <td><mat-icon>sign_in_alt</mat-icon> &nbsp; Simplified Registration</td>
+        </tr>
+            <tr>
+            <td><mat-icon>present_to_all</mat-icon> &nbsp; Compliance into portal</td>
+            </tr>
+            <tr>
+            <td><mat-icon>phonelink</mat-icon> &nbsp; Epayment Custom duties</td>
+            </tr>
+            <tr>
+                <td><mat-icon>contact_phone</mat-icon> &nbsp; Login as Admin</td>
+            </tr>
+            <tr>
+            <td><mat-icon>person</mat-icon> &nbsp; Custom Officer</td>
+            </tr>
+            <tr>
+            <td><mat-icon>chat</mat-icon> &nbsp; Chat</td>
+            </tr>
+            <tr>
+            <td><mat-icon>chat_bubble_outline</mat-icon> &nbsp; WebHelp</td>
+            </tr>
+            <tr>
+            <td><mat-icon>help_outline</mat-icon> &nbsp; Helpdesk</td>
+            </tr>
+            </table>
+        </div>
+        <div class=" offset-1 col-md-6">                               <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <th class="bg-info" colspan="2">
+                                            Following are your registration deatils as available in ICES. For any correction/modification in these details you are required
+                                            to file an amendment at your parent commissionerate policy branch and then update the same at
+                                            ICEGATE login module.
+                
+                                        </th>
+                
+                
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr *ngIf="registerForm.value.userRole!='Custodian'">
+                                            <td class="text-right">
+                                                Pan No
+                                                <br/>
+                
+                                            </td>
+                                            <td class="text-left">
+                                                {{panNO}}
+                                                <br/>
+                
+                                            </td>
+                
+                                        </tr>
+                                        <tr *ngIf="registerForm.value.userRole=='Custodian'">
+                                            <td class="text-right">
+                                               Custodian Name
+                                                <br/>
+                
+                                            </td>
+                                            <td class="text-left">
+                                                {{custodianName}}
+                                                <br/>
+                
+                                            </td>
+                
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                Agency Name
+                                            </td>
+                                            <td class="text-left">
+                                                {{agencyName}}
+                                            </td>
+                
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                ADDRESS 1
+                
+                                            </td>
+                                            <td class="text-left">
+                                               {{address1}}
+                                            </td>
+                
+                
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                              Address Line 2:
+                                            </td>
+                                            <td class="text-left">{{address2}}</td>
+                                        </tr>
+                
+                                        <tr>
+                                            <td class="text-right">
+                                                City
+                
+                                            </td>
+                                            <td class="text-left">
+                                               {{city}}
+                                            </td>
+                
+                
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                State
+                
+                                            </td>
+                                            <td class="text-left">
+                                                {{state}}
+                                            </td>
+                
+                
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                Pincode
+                
+                                            </td>
+                                            <td class="text-left">
+                                               {{pincode}}
+                                            </td>
+                
+                
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">CONTACT NO.
+                
+                                            </td>
+                                            <td class="text-left">
+                                              {{contactNo}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">email Id
+                
+                                            </td>
+                                            <td class="text-left">{{emailId}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                Custom Location
+                
+                                            </td>
+                                            <td class="text-left">
+                                                <textarea class="scrollabletextbox" name="note">
+                                                               
+                                                    {{customLocation}}
+                                                              </textarea>
+                                            </td>
+                                       
+                
+                
+                                        </tr>
+                                        
+                
+                
+                                    </tbody>
+                                </table>
+                                <button type="submit" class="btn btn-danger" (click)="hide()">Confirm</button>
+                            </div> 
+                        <!-- ###################################################################################################################################### -->
+                
+                
+                            </div>
+                            <div *ngIf="enter && registerForm.value.userType=='License Holder or Master F card holder'" class="col-md-6">
+                                <form  [formGroup]="userDetails">
+    
+                                    <table class="table table-bordered table-sm">
+                    
+                    
+                                        <thead>
+                                           
+                    
+                                            <th class="text-center bg-info" colspan="2">PERSONAL DETAILS</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="form-group">Enter your name<span class="text-danger">*</span></td>
+                                                <td>
+                                                    <input type="text" class="form-control" placeholder="Enter your name" formControlName="userName">
+                                                    <mat-error *ngIf='userDetails.controls.userName.errors?.required && userDetails.controls.userName.touched' class="text-danger">Field Required</mat-error>
+                                                    <mat-error *ngIf='userDetails.controls.userName.errors?.pattern' class="text-danger">Enter Valid Name</mat-error> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mobile Number<span class="text-danger">*</span></td>
+                                                <td>
+                                                    <input type="number" class="form-control" placeholder="e.g. 9812000000" formControlName="mobileNo">
+                                                    <mat-error *ngIf='userDetails.controls.mobileNo.errors?.pattern' class="text-danger">Mobile number should be of 10 digits</mat-error> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Photo type<span class="text-danger">*</span></td>
+                                                <td>
+                                                    <select class="form-control" formControlName="photoIdType">
+                                                        <option>Aadhaar</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Enter Voter-id No.<span class="text-danger">*</span></td>
+                                                <td>
+                                                    <input type="text" class="form-control" formControlName="photoIdNumber">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>Scanned colored copy of Voter id card</td>
+                                                    <td><input type="file" accept="image/x-png,image/gif,image/jpeg"  (change)="getFileDetails($event,'1')"></td>
+                                                </tr>
+                                            <tr>
+                                                <td>Document Type<span class="text-danger">*</span></td>
+                                                <td>
+                                                    <select size="3" class="form-control" formControlName="docType">
+                                                        <option *ngFor="let type of docType">{{type}}</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Scanned colored copy of license</td>
+                                                <td><input type="file" accept="image/x-png,image/gif,image/jpeg"  (change)="getFileDetails($event,'2')"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Scanned colored copy of Authorization Letter</td>
+                                                <td><input type="file" accept="image/x-png,image/gif,image/jpeg"  (change)="getFileDetails($event,'3')"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>License Expiration Date<span class="text-danger">*</span></td>
+                                                
+                                                <td>
+                                                    <input type="date" class="form-control" formControlName="expDate">
+                                                </td>
+                                            </tr>
+                                            <tr *ngIf="registerForm.value.userType == 'Employee F card Holder/Employee G card holder'">
+                                                <td>G Card No.<span class="text-danger">*</span></td>
+                                                
+                                                <td>
+                                                    <input type="text" class="form-control" formControlName="gcardNo">
+                                                </td>
+                                            </tr>
+                    
+                    
+                                            <tr>
+                                                <td colspan="2">
+                                                    <input formControlName="decl" type="checkbox">I agree to the CBES
+                                                    <a class="text-primary" href="">tearms & conditions</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <span class="text-danger">Declaration:</span>I agree to the correctness of information provided by me. This information
+                                                    pertains to me.</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <button (click)="submitCHA()" type="submit" class="btn btn-danger">Confirm</button>
+                                                </td>
+                                            </tr>
+                                                
+                                        </tbody>
+                    
+                                    </table>
+                                    <div *ngIf="successMessage1!=null" >
+                                            <span class="text-success">{{successMessage1}}</span>
+                                    </div>
+                                    <div *ngIf="errorMessage1!=null" >
+                                            <span class="text-danger">{{errorMessage1}}</span>
+                                    </div>
+                                  
+                    
+                                </form>
+                            </div>
+    <!-- ###################################################################################################################################### -->
+                            <div *ngIf="enter && registerForm.value.userRole=='Airlines'" >
+                                <div class="row">
+                                    <div class="col-md-8 offset-2">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="card-title text-danger text-center">
+                                                    <h4>Personal Details</h4>
+                                                </div>
+                                            </div>
+                            
+                                            <div class="card-body">
+                                                <form enctype="multipart/form-data" class="form" [formGroup]="userDetailsAirline">
+                            
+                                                    <div class="form-group">
+                                                        <label for="userName">Name:</label>
+                                                        <input type="text" formControlName="userName" class="form-control" id="userName">
+                                                        <div id="userNameError" class="text-danger">
+                                                            <mat-error *ngIf="userDetailsAirline.controls.userName.errors?.required && userDetailsAirline.controls.userName?.dirty">Field Required</mat-error>
+                            
+                            
+                                                            <mat-error *ngIf="userDetailsAirline.controls.userName.errors?.pattern  && userDetailsAirline.controls.userName?.dirty">Enter Valid Name</mat-error>
+                                                        </div>
+                            
+                            
+                            
+                                                    </div>
+                            
+                                                    <div class="form-group">
+                                                        <label for="mobileNo">Mobile No:</label>
+                                                        <input type="number" formControlName="mobileNo" class="form-control" id="mobileNo">
+                                                        <div id="mobileNoError" class="text-danger">
+                                                            <p *ngIf="userDetailsAirline.controls.mobileNo.errors?.required && userDetailsAirline.controls.mobileNo?.touched">
+                                                                Field Required
+                                                            </p>
+                                                            <p *ngIf="userDetailsAirline.controls.mobileNo.errors?.pattern  && userDetailsAirline.controls.mobileNo?.dirty">Enter Valid Mobile No.</p>
+                            
+                                                        </div>
+                            
+                                                    </div>
+                            
+                                                    <div class="form-group">
+                                                        <div class="upload-container">
+                                                            <div class="upload-content">
+                                                                <label for="scannedAuthorizationLetter">Scanned Copy of Authorization Letter:</label>
+                                                                <input type="file" class="form-control" id="scannedAuthorizationLetter" (change)="getFileDetails($event,'1')">
+                                                               
+                                                                <div class="upload-response">
+                                                                    <div id="scannedAuthorizationLetterError"></div>
+                                                                    <div id="scannedAuthorizationLetterSuccess"></div>
+                                                                </div>
+                                                                <!-- <div id="scannedAuthorizationLetterError" class="text-danger">
+                                                                    <p id="scannedAuthorizationLetterError" class="text-danger" *ngIf="userDetailsAirline.controls.scannedAuthorizationLetter.errors?.required && userDetailsAirline.controls.scannedAuthorizationLetter.dirty">
+                                                                        Field Required
+                                                                    </p>
+                                                                  
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                            
+                            
+                            
+                            
+                                                    </div>
+                            
+                                                    <div class="form-group">
+                                                        <div class="upload-container">
+                                                            <div class="upload-content">
+                                                                <label for="scannedLicense">Scanned Copy of License:</label>
+                                                                <input type="file" class="form-control" id="scannedLicense" (change)="getFileDetails($event, '2')">
+                                                                
+                                                                <div class="upload-response">
+                                                                    <div id="scannedLicenseError"></div>
+                                                                    <div id="scannedLicenseSuccess"></div>
+                                                                </div>
+                                                                <!-- <div id="scannedLicenseError" class="text-danger">
+                                                                    <p *ngIf="userDetailsAirline.controls.scannedLicense.errors?.required && userDetailsAirline.controls.scannedLicense.dirty">
+                                                                        Field Required
+                                                                    </p>
+                                                                  
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                            
+                            
+                            
+                            
+                                                    </div>
+                            
+                                                    <div class="form-group">
+                                                        <label for="photoIdType">Select Photo ID Type:</label>
+                                                        <select formControlName="photoIdType" class="form-control">
+                                                            <option disabled value="">--Select--</option>
+                                                            <option value="adhaarCard">Adhaar Card</option>
+                                                            <option value="voterIdCard">Voter ID Card</option>
+                                                        </select>
+                                                        <!-- <div id="photoIdTypeError" class="text-danger">
+                                                            <p *ngIf="userDetailsAirline.controls.photoIdType.errors?.required && userDetailsAirline.controls.photoId.dirty">
+                                                                Field Required
+                                                            </p>
+                                                          
+                                                        </div> -->
+                            
+                            
+                                                    </div>
+                            
+                                                    <div class="form-group">
+                                                        <label for="docType">Document Type:</label>
+                                                        <select formControlName="docType" class="form-control">
+                                                            <option value="AirIGM">Air IGM</option>
+                                                            <option value="AirEGM">Air EGM</option>
+                                                            <option value="AirTransshipmentPermit">Air Transshipment Permit</option>
+                                                        </select>
+                                                        <div id="docTypeError" class="text-danger">
+                                                            <p *ngIf="userDetailsAirline.controls.docType.errors?.required && userDetailsAirline.controls.docType.dirty">
+                                                                Field Required
+                                                            </p>
+                                                        </div>
+                            
+                                                    </div>
+    <!--                         
+                                                    <div class="form-group">
+                                                        <label for="expDate">License Expiration Date:</label>
+                                                        <input type="date" class="form-control" id="expDate" formControlName="expDate">
+                                                        <div id="expDateError" class="text-danger">
+                                                            <p *ngIf="userDetailsAirline.controls.expDate.errors?.required && userDetailsAirline.controls.expDate.dirty">
+                                                                Field Required
+                                                            </p>
+                                                          
+                            
+                                                        </div>
+                            
+                                                    </div> -->
+                            
+                                                     <div class="form-group">
+                                                        <div class="upload-container">
+                                                            <div class="upload-content">
+                                                                <label for="digitalCertificate">Scanned Copy of Digital Certificate:</label>
+                                                                <input type="file" class="form-control" id="digitalCertificate" (change)="getFileDetails($event,'3')">
+                                                             
+                                                                <div class="upload-response">
+                                                                    <div id="digitalCertificateError"></div>
+                                                                    <div id="digitalCertificateSuccess"></div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                            
+                            
+                                                    </div>
+                            
+                            
+                                                </form>
+                                            </div>
+                            
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary" (click)="otp()" (click)="submitAIRLINES()">Confirm</button>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                
+                        </div>
+                            
+            </div>
+        </div>
+    </div>

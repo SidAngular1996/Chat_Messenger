@@ -1,0 +1,88 @@
+import { Component, OnInit } from '@angular/core';
+import { PhotoIdType, HttpClientUserService } from './../service/httpclientuser.service';
+import { FormGroup, FormBuilder, Validators} from '../../../node_modules/@angular/forms';
+import { Router } from '../../../node_modules/@angular/router';
+import {MustMatch} from './password.validator';
+@Component({
+  selector: 'app-add-userdetails',
+  templateUrl: './add-userdetails.component.html',
+  styleUrls: ['./add-userdetails.component.css']
+})
+export class AddUserdetailsComponent implements OnInit {
+  registerForm: FormGroup;
+  /* state:string[]=['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Delhi','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhan','Karnataka','Kerela','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal'];
+ */  
+  /* phidtyname:string[]=['Aadhar Card','Driving License','PAN No.','Passport','VoterId']; */
+  phidtynamee:PhotoIdType[];
+  successMessage;
+  errorMessage;
+  form:FormGroup;
+  stat:any[]=[];
+
+  constructor(
+    private httpClientUserService: HttpClientUserService,
+    private formBuilder: FormBuilder,
+    private router:Router
+
+  ) {
+    this.form = this.formBuilder.group({
+      state: [""],
+      phidtynamee: [""]
+    });
+  }
+  ngOnInit() {
+    this.registerForm=this.formBuilder.group({
+    email:['',[Validators.required,Validators.pattern('^[A-Za-z0-9!@#$%^&*()._]+@[A-Za-z0-9.-]{2,}[.]{1}[a-z]{2,}')]],
+    phonnumber:['',[Validators.required,Validators.pattern('^[1-9]{1}[0-9]{9}')]],
+    password:['',Validators.required],
+    passwordcnf:['',[Validators.required]],
+    tranphonnumber:['',[Validators.required,Validators.pattern('^[0-9]{3}[0-9]{8}')]],
+    address1: ['', Validators.required],
+    address2: ['', Validators.required],
+    city: ['', Validators.required],
+    stid: ['', Validators.required],
+    pincode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
+    photoIdType: ['', Validators.required],
+    pannub: ['',[Validators.required,Validators.pattern('^[A-Z]{5}[0-9]{4}[A-Z]{1}$')]],
+    nameaspan:['',Validators.required],
+    passportno:['',[Validators.required,Validators.pattern('^[A-Z]{1}[0-9]{7}')]]
+    }, {
+      validator: MustMatch('password', 'passwordcnf')
+  });
+   this.onChangeState()
+   this.onChangephoto()
+   console.log(this.registerForm)
+  }
+ 
+  onChangeState() {
+    this.httpClientUserService
+      .getStates()
+      .subscribe((data) => {this.stat=data ;});
+  }
+
+  onChangephoto() {
+    this.httpClientUserService
+      .getPhotoid()
+      .subscribe(data => {this.phidtynamee = data});
+  }
+
+  connectingPage(){
+    this.httpClientUserService.createUserDetails(this.registerForm.value).subscribe(
+      (success)=>{
+        //alert(success.response );
+        console.log(this.registerForm.value );
+        this.successMessage=success;
+        console.log(this.successMessage);
+       
+      },
+      (fail)=>{this.errorMessage=fail.error.Message})
+  
+  this.router.navigateByUrl('refresh')
+
+  }
+  reset(){
+    this.registerForm.reset();
+  }
+}
+
+

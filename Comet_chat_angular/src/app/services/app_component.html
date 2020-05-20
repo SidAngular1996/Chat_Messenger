@@ -1,0 +1,128 @@
+
+  
+  <div class="container-fluid">
+    <div>
+      <img src="../assets/header1.jpg" class="imghead">
+    </div>
+    <div class="row one">
+      <span class="col-md-1 offset-1 one " style="margin: 0%;">Latest</span>
+      <span class="col-md-7 one"style="margin: 0%;"><marquee>welcome to icegate</marquee></span>
+      <span class="col-md-3 one"style="margin: 0%;">*Attention</span>
+    </div>
+  <mat-toolbar class="  toolbar navbar navbar-expand-md new text-black two">
+    
+      
+    
+    <button mat-icon-button #navbarToggler class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" (click)="isShown = !isShown" [attr.aria-expanded]="isShown" aria-label="Toggle navigation">
+        <mat-icon>home</mat-icon>
+    </button>
+    
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isShown }" id="navbarSupportedContent">
+        <button mat-button class="nav-link" [routerLink]="['/home']"  matTooltip="Go to main page" matTooltipPosition="below"
+        matTooltipClass="mat-tooltip">
+            HOME
+        </button>
+        <button mat-button class="nav-link"  matTooltip="Know more about icegate" matTooltipPosition="below"
+        matTooltipClass="mat-tooltip">
+            ABOUT US
+        </button>
+        <button mat-button class="nav-link" [matMenuTriggerFor]="services" matTooltip="Click to check the services provided" matTooltipPosition="below"
+        matTooltipClass="mat-tooltip">SERVICES
+        <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #services="matMenu">
+          <button mat-menu-item >Enquiry</button>
+          <button mat-menu-item>Login</button>
+          <button mat-menu-item>Simplified registrations</button>
+          <button mat-menu-item>Compliance Into Portal</button>
+          <button mat-menu-item>Epayment Custom Duties</button>
+          <button mat-menu-item>Login As Admin</button>
+          <button mat-menu-item>Custom Officer</button>
+          <button mat-menu-item>Chat</button>
+          <button mat-menu-item>Helpdesk</button>
+        </mat-menu>
+        <button mat-button class="nav-link"  matTooltip="Check icegate guidelines" matTooltipPosition="below"
+        matTooltipClass="mat-tooltip">
+           
+        GUIDELINES
+        </button>
+        <button mat-button class="nav-link" [matMenuTriggerFor]="contact" matTooltip="check contact details" matTooltipPosition="below"
+        matTooltipClass="mat-tooltip">
+           CONTACT US<mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #contact="matMenu">
+          <button mat-menu-item   [matMenuTriggerFor]="toll"> TOll Free No </button>
+          <button mat-menu-item [matMenuTriggerFor]="email">Email Id:</button>
+          </mat-menu>
+          <mat-menu #toll>
+            <button mat-menu-item>	<mat-icon>phone</mat-icon>100-3010-2200</button>
+           
+          </mat-menu>
+          <mat-menu #email>
+            <button mat-menu-item>icegatehelpdesk@icegate.gov.in</button>
+          </mat-menu>
+        <button mat-button class="nav-link"  matTooltip="Go to main page" matTooltipPosition="below"
+        matTooltipClass="mat-tooltip">
+            WEBHELP
+        </button>
+       
+      <button mat-button matTooltip="profile" class="nav-link" [routerLink]="['/register']" *ngIf="userLoggedIn;else go"  matTooltip="User Profile"
+      matTooltipPosition="below" matTooltipClass="mat-tooltip">
+      <mat-icon>person</mat-icon>
+  </button>
+  <br>
+  <ng-template #go>
+      <button mat-button matTooltip="profile" class="nav-link" (click)="viewSnack()" [routerLink]="['/register']" matTooltip="User Profile" matTooltipPosition="below"
+          matTooltipClass="mat-tooltip">
+          <mat-icon>person</mat-icon>
+      </button>
+  </ng-template>
+          <form class="form-inline select ml-auto">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <mat-icon matSuffix>search</mat-icon>
+            
+          </form>
+          
+         
+       
+     
+
+
+      <!-- <button mat-button [routerLink]="['/signup']" class="nav-link" (click)="login()" *ngIf="!userName" matTooltip="Login"
+          matTooltipPosition="below" matTooltipClass="mat-tooltip">SIGN IN</button>
+          <button mat-button [routerLink]="['/register']" class="nav-link" (click)="login()" *ngIf="!userName" matTooltip="Login"
+          matTooltipPosition="below" matTooltipClass="mat-tooltip">REGISTER</button>
+      <button mat-button *ngIf="userName" class="nav-link" (click)="signout()">SIGN OUT</button>
+      <br> -->
+   
+        
+        &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+       
+    </div>
+    
+    
+</mat-toolbar>  
+ 
+  
+
+  
+  
+    
+    
+    
+    
+
+
+    
+    
+  </div>
+
+    
+    
+    
+    <router-outlet></router-outlet> 
+  
+ 
+  
+  
